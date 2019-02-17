@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Relais&Chateaux looking for best prices</title>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <meta charset="utf-8" />
+    <title>Home Page</title>
+    <script>
+      $(function() {
+        $('#buttonJson').on('click', function(){
+        $.getJSON("RelaisEtoiles.json", function(result){
+         $.each(result, function(i, field){
+         $("div").append('Hotel : ' + field.hotelName + '<br>');
+         $("div").append('Restaurant : ' + field.restaurantName + '<br>');
+         $("div").append('Code postal : ' + field.postalCode + '<br>');
+         $("div").append('Chef : ' + field.chef + '<br>');
+         $("div").append('Prix : ' + field.price + '<br>'+ '<br>');
+         });
+        });
+      });
+      });
+    </script>
+    <script>
+	function sortJsonName(a,b){
+	    return a.price > b.price ? 1 : -1;
+	};
+	$(function () {
+	    $('#buttonPrice').on('click', function () {
+	        $.getJSON("RelaisEtoiles.json", function (result) {
+	            result = $(result).sort(sortJsonName);
+	            $.each(result, function (i, field) {
+	                $("div").append('Hotel : ' + field.hotelName + '<br>');
+	                $("div").append('Restaurant : ' + field.restaurantName + '<br>');
+	                $("div").append('Code postal : ' + field.postalCode + '<br>');
+	                $("div").append('Chef : ' + field.chef + '<br>');
+	                $("div").append('Prix : ' + field.price + '<br>' + '<br>');
+	            });
+	        });
+	    });
+	});
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>Welcome to Relais & Chateaux Best prices ! </h1>
+    </div>
+    
+            <h2>Click on the button to see the lists of best Hotels and stared Restaurant !</h2>
+            <button id="buttonJson">Let's go !</button>
+            <button id="buttonPrice">Sorted by price !</button>
+
+   
+       
+
+    
+
+
+</body>
+</html>
